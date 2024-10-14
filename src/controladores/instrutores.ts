@@ -18,7 +18,26 @@ const instrutores :TInstrutore[]= [
         email:'maria@email.com'
     }
 ]
-
+//listar
 export const listar=(req:Request,res:Response)=>{
 return res.status(200).json(instrutores)
 }
+
+//encontar um instrutor pelo id
+export const detalhar=(req:Request,res:Response)=>{
+
+    const {id}=req.params
+    const instrututor=instrutores.find((item)=>{
+        return item.id===Number(id)
+    })
+    if (!instrututor) {
+        return res.status(400).json('instrutor não encontrado')
+    }
+
+    return res.status(200).json(instrututor)
+    }
+
+    export const cadastrar=(req:Request,res:Response)=>{
+        
+        }
+        
