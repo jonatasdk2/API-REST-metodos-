@@ -1,11 +1,12 @@
 
 import 'dotenv/config'
 import Express, { Request, Response }  from "express"; 
-import { teste } from './controladores/controladores';
 import rotas from './rotas';
 
 
 const app = Express()
+
+app.use(Express.json())
 
 app.use(rotas)
 
