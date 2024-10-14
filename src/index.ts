@@ -1,13 +1,14 @@
 
 import 'dotenv/config'
 import Express, { Request, Response }  from "express"; 
+import { teste } from './controladores/controladores';
+import rotas from './rotas';
+
 
 const app = Express()
 
-app.get('/',(req:Request,res:Response)=>{
+app.use(rotas)
 
-    return res.send('ok')
-})
 app.listen(process.env.PORT,()=>{
     console.log('funcionando');
     
