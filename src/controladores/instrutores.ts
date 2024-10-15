@@ -17,7 +17,11 @@ const instrutores :TInstrutore[]= [
         nome:'maria',
         email:'maria@email.com'
     }
+   
 ]
+
+let novoId=3
+
 //listar
 export const listar=(req:Request,res:Response)=>{
 return res.status(200).json(instrutores)
@@ -31,7 +35,7 @@ export const detalhar=(req:Request,res:Response)=>{
         return item.id===Number(id)
     })
     if (!instrututor) {
-        return res.status(400).json('instrutor não encontrado')
+        return res.status(404).json('instrutor não encontrado')
     }
 
     return res.status(200).json(instrututor)
@@ -42,7 +46,7 @@ export const detalhar=(req:Request,res:Response)=>{
         const {nome,email}=req.body
 
         const novoUsuario:TInstrutore={
-            id:3,
+            id:novoId++,
             nome,
             email
         }
@@ -51,4 +55,22 @@ export const detalhar=(req:Request,res:Response)=>{
         return res.status(201).json(novoUsuario)
         
         }
+
+        export const atualizar=(req:Request,res:Response)=>{
+
+            const {nome,email}=req.body
+            const {id}=req.params
+    const instrututor=instrutores.find((item)=>{
+        return item.id===Number(id)
+    })
+    if (!instrututor) {
+        return res.status(404).json('instrutor não encontrado')
+    }
+
+    instrututor.nome=nome
+    instrututor.email=email
+
+    return res.status(204).send()
+            
+            }
         
