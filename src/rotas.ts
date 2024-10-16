@@ -1,5 +1,6 @@
 import {Router}  from 'express'
-import { atualizar, cadastrar, deletar, detalhar, listar } from './controladores/instrutores'
+import { atualizar, atualizarEmail, cadastrar, deletar, detalhar, listar } from './controladores/instrutores'
+import { cadastrarAula, deletaraula } from './controladores/aulas'
 
 const rotas=Router()
 
@@ -18,9 +19,14 @@ rotas.put('/instrutores/:id',atualizar)
 //excluir um instrutor
 rotas.delete('/instrutores/:id',deletar)
 
-//cadastrar uma aula para um instrutor
-//excluir uma aula para um instrtutor
+// atualização pontual
+rotas.patch('/instrutores/:id/alterarEmail',atualizarEmail)
 
+//cadastrar uma aula para um instrutor
+rotas.post('/instrutores/:id/aulas',cadastrarAula)
+
+//excluir uma aula para um instrtutor
+rotas.delete(  '/instrutores/:id/aulas/:idaula',deletaraula)
 
 
 export default rotas
